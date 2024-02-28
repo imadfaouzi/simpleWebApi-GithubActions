@@ -52,7 +52,7 @@ jobs:
           cd docker-build    
           
           # move all files to the new folder
-          cp -r ../. .
+          cp -r ../* .
           
           # build the docker image
           docker build -t imadfa01/demo-app-gitactions .
