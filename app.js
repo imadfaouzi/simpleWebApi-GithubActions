@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
 // add a new route to return information about the app
 // say that the app is for training to work with github actions
 app.get('/about', (req, res) => {
-    res.send('This is a simple Node.js API for training to work with GitHub Actions.');
+    res.send('This is a simple Node.js API for training to work with GitHub Actions. | use just shell commands');
 });
 
 app.listen(PORT, () => {

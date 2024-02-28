@@ -28,10 +28,34 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2      
 
-      - name: Deploy
-        uses: mr-smithers-excellent/docker-build-push@v6
-        with:
-          image: imadfa01/demo-app-gitactions
-          registry: docker.io
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+      # deploy with prepared code in market place
+
+      # - name: Deploy
+      #   uses: mr-smithers-excellent/docker-build-push@v6
+      #   with:
+      #     image: imadfa01/demo-app-gitactions
+      #     registry: docker.io
+      #     username: ${{ secrets.DOCKER_USERNAME }}
+      #     password: ${{ secrets.DOCKER_PASSWORD }}
+
+
+      - name: deploy with shell commands
+        shell: bash
+        run: |
+          # connect to docker hub
+          # --password-stdin serve to avoid the password to be shown in the logs
+          echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+
+          # create a new folder
+          mkdir docker-build
+
+          cd docker-build    
+          
+          # move all files to the new folder
+          cp -r ../. .
+          
+          # build the docker image
+          docker build -t imadfa01/demo-app-gitactions .
+          
+          # Push Docker image
+          docker push imadfa01/demo-app-gitactions
