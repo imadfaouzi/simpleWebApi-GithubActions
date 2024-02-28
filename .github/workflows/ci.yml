@@ -1,4 +1,4 @@
-name: CI/CD
+name: CI pipeline
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
       - name: Build docker image
         shell: bash
         run: |
-         docker build -t ghcr.io/imadfaouzi/demo-app-gitactions:v1.0.0 .
+         docker build -t ghcr.io/imadfaouzi/demo-app-gitactions .
  
       - name: deploy with shell commands
         shell: bash
@@ -26,4 +26,4 @@ jobs:
           echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
           
           # Push Docker image
-          docker push ghcr.io/imadfaouzi/demo-app-gitactions:v1.0.0
+          docker push ghcr.io/imadfaouzi/demo-app-gitactions:lastest
