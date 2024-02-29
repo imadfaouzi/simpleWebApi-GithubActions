@@ -20,10 +20,10 @@ jobs:
       - name: connect to github container registry
         run: echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      - name: Pull Docker-image
+      - name: Pull Docker image
         run: sudo docker pull ghcr.io/imadfaouzi/demo-app-gitactions:latest
 
-      - name: remove old container
+      - name: Remove old container
         run: sudo docker rm -f demo-app-gitactions-container || true
 
       - name: Run Docker container
