@@ -13,17 +13,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # - name: Build docker image
-      #   shell: bash
-      #   run: |
-      #    docker build -t ghcr.io/imadfaouzi/demo-app-gitactions .
+      - name: Build docker image
+        shell: bash
+        run: |
+         docker build -t ghcr.io/imadfaouzi/demo-app-gitactions .
  
-      # - name: deploy with shell commands
-      #   shell: bash
-      #   run: |
-      #     # connect to docker hub
-      #     # --password-stdin serve to avoid the password to be shown in the logs
-      #     echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: deploy with shell commands
+        shell: bash
+        run: |
+          # connect to docker hub
+          # --password-stdin serve to avoid the password to be shown in the logs
+          echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
           
-      #     # Push Docker image
-      #     docker push ghcr.io/imadfaouzi/demo-app-gitactions:latest
+          # Push Docker image
+          docker push ghcr.io/imadfaouzi/demo-app-gitactions:latest
