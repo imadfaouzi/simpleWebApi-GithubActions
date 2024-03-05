@@ -3,7 +3,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
-    res.send('Hello, welcome to our simple Node.js API!');
+    res.send('Hello, welcome to our simple Node.js API! (05/03/2024 version 4h:15min 😉😉)');
 });
 
 // add a new route to return information about the app
